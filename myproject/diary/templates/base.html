@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Diary Site{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'diary/css/style.css' %}">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+
+        .container {
+        margin-top: 40px; /* コンテンツ全体を上部から40px下に移動 */
+        }
+
+        .like-section {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        }
+
+        .heart-button {
+        background: none;
+        border: none;
+        color: #d63384; /* Bootstrapのピンク色 */
+        cursor: pointer;
+        padding: 0;
+        font-size: 24px; /* アイコンのサイズを調整 */
+        margin-right: 10px; /* マージンを追加して、ボタンとカウントの間にスペースを作る */
+        }
+
+        .heart-button:focus {
+        outline: none;
+        box-shadow: none;
+        }
+
+        .heart-button .fa-heart {
+        transition: color 0.3s ease; /* 色の変化を滑らかに */
+        }
+
+        .heart-button:hover .fa-heart {
+        color: #b30059; /* ホバー時の色 */
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">My Diary</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'post_list' %}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'post_new' %}">New Post</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'password_change' %}">Change Password</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <div class="bg">
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+

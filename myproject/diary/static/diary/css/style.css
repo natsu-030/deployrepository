@@ -1,0 +1,64 @@
+body {
+    background-image: url('/static/diary/images/background.jpg');
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.btn-custom {
+    background-color: #bcaca5; /* カスタムの背景色 */
+    color: white; /* テキスト色 */
+    padding: 10px 20px; /* パディングを適宜調整 */
+    border: none; /* 境界線なし */
+    border-radius: 5px; /* 角の丸み */
+    font-size: 16px; /* フォントサイズ */
+    transition: 0.3s; /* ホバー時の遷移のスムーズさ */
+}
+
+.btn-custom:hover {
+    background-color: #a19486; /* ホバー時の背景色を少し暗くする */
+}
+
+.center-container {
+    display: flex;
+    flex-direction: column;  
+    align-items: flex-start;    
+    justify-content: center; 
+    min-height: 100vh;
+    width: 100%;
+    padding-left: 15px;       
+}
+
+.center-form {
+    width: 100%;             
+    max-width: 330px;        
+    padding: 15px;           
+    margin: 0;              
+}
+
+.form-group label {
+    white-space: nowrap; 
+}
+
+.form-group input, .form-group textarea {
+    width: 100%;
+}
+
+.form-group input {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.form-group {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    width: 100%;
+}
+
+.form-group button {
+    margin-left: auto; 
+}
+
