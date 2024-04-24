@@ -62,3 +62,35 @@ body {
     margin-left: auto; 
 }
 
+.nav-link {
+    line-height: inherit; /* ナビゲーションバーの高さに合わせる */
+    vertical-align: middle; /* 中央揃え */
+}
+
+.navbar-nav .nav-link, .navbar-nav form .btn {
+    color: #fff !important; /* テキストの色を強制的に白に設定 */
+    line-height: 1.5 !important; /* 行の高さを調整して、他のナビゲーションアイテムと一致させる */
+    vertical-align: middle !important; /* 垂直方向の位置を中央に調整 */
+    display: inline-block; /* ブロック要素のように扱う */
+    padding: .5rem 1rem; /* パディングを適切に設定 */
+    background: none; /* 背景を透明に */
+    border: none; /* 境界線を削除 */
+    text-decoration: none; /* 下線を消す */
+}
+
+nav .navbar-nav form {
+    all: unset; /* すべてのデフォルトスタイルを解除 */
+    display: inline-block; /* インラインブロック要素として表示 */
+}
+
+nav .navbar-nav button {
+    all: unset; /* ボタンのデフォルトスタイルを解除 */
+    color: #fff !important; /* テキスト色を白に設定 */
+    display: inline-block; /* インラインブロック要素として表示 */
+    padding: .5rem 1rem; /* ナビゲーションリンクと同じパディングに設定 */
+    text-decoration: none; /* 下線を削除 */
+    background: none; /* 背景を透明に */
+    border: none; /* 境界線を削除 */
+    margin-top: 8px !important; /* 上部のマージンを強制適用 */
+    margin-left: 2mm; /* 左のマージンを調整して、位置を右にずらす */
+}

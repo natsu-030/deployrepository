@@ -16,13 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from diary.views import SignUpView, LoginView  # カスタムビューをインポート
-from django.contrib.auth.views import LogoutView  # ログアウトビューをインポート
+from diary.views import SignUpView, LoginView, CustomLogoutView # カスタムビューをインポート
+from django.urls import reverse_lazy
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('signup/', SignUpView.as_view(), name='signup'),
     path('login/', LoginView.as_view(), name='login'),
-    path('logout/', LogoutView.as_view(), name='logout'),
+    path('logout/', CustomLogoutView.as_view(), name='logout'),  # カスタムログアウトビューを使用
     path('', include('diary.urls')),  # diaryアプリのURLをインクルード
 ]

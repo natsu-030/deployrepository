@@ -5,6 +5,7 @@ from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LogoutView
 from django.contrib.auth.decorators import login_required
 from .models import Post, Like
 from .forms import PostForm
@@ -22,9 +23,8 @@ class SignUpView(generic.CreateView):
 class LoginView(auth_views.LoginView):
     template_name = 'registration/login.html'
 
-# ログアウトビュー（Djangoのデフォルトビューを使用）
-class LogoutView(auth_views.LogoutView):
-    template_name = 'registration/logged_out.html'
+class CustomLogoutView(LogoutView):
+    next_page = reverse_lazy('login')  # ログアウト後にリダイレクトするURL
 
 # 投稿リストビュー
 class PostListView(LoginRequiredMixin, generic.ListView):
