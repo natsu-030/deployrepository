@@ -1,30 +1,43 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container">
+<style>
+    .actions {
+    display: flex;
+    justify-content: space-between; /* 左右にコンテンツを配置 */
+    align-items: center; /* 垂直方向の中心に配置 */
+    margin-top: 20px; /* 上部のマージンで隙間を作る */
+    }
+</style>
 
-    <div class="card">
+<div class="container" style="margin-top: 85px;"></div>
+
+    <div class="card mb-4">
         <div class="card-body">
             <!-- タイトルを表示 -->
-            <h5 class="card-title">タイトル: {{ post.title }}</h5>
+            <h5 class="card-title"><strong>タイトル:</strong> {{ post.title }}</h5>
             <!-- 今日の頑張ったことを表示 -->
             <p class="card-text"><strong>今日の頑張ったこと:</strong> {{ post.efforts }}</p>
             <!-- 自分への励ましを表示 -->
             <p class="card-text"><strong>自分への励まし:</strong> {{ post.encouragement }}</p>
              <!-- 編集と削除ボタンを追加 -->
             {% if request.user == post.user %}
-            <a href="{% url 'post_edit' post.pk %}" class="btn btn-custom float-right">Edit</a>
-            <a href="{% url 'post_delete' post.pk %}" class="btn btn-danger">Delete</a>
+            <a href="{% url 'post_edit' post.pk %}" class="btn btn-custom btn-custom-wide">Edit</a>
+            <a href="{% url 'post_delete' post.pk %}" class="btn btn-danger float-right">Delete</a>
              {% endif %}
             <!-- いいねボタン -->
-    <div class="like-section">    
-        <form action="{% url 'toggle_like' post.id %}" method="post">
-            {% csrf_token %}
-            <button type="submit" class="heart-button">
-                <i class="{{ user_likes_post|yesno:'fas fa-heart text-danger,far fa-heart' }}"></i>
-            </button>
-            <span>{{ post.likes.count }} Likes</span>
-        </form>
+            <div class="like-section">    
+                <form action="{% url 'toggle_like' post.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="heart-button">
+                        <i class="{{ user_likes_post|yesno:'fas fa-heart text-danger,far fa-heart' }}"></i>
+                    </button>
+                    <span>{{ post.likes.count }} Likes</span>
+                </form>
+            </div>
+            <!-- 戻るボタン -->
+            <a href="{% url 'post_list' %}" class="btn btn-secondary">Back to List</a>
+        </div>
     </div>
 </div>
 {% endblock %}

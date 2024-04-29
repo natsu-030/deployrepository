@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2 style="margin-top: 85px;"></h2style>Welcome to my Website!</h2>
+    <p>日々の頑張りを記録してアウトプットしていきましょう</p>
+    <a href="{% url 'login' %}" class="btn btn-custom">Log In</a>
+    <a href="{% url 'signup' %}" class="btn btn-secondary">Sign Up</a>
+</div>
+{% endblock %}

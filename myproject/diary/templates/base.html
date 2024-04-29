@@ -9,8 +9,13 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'diary/css/style.css' %}">
     <style>
+        .errorlist {
+        color: red; /* エラーメッセージの文字色を赤に設定 */
+        font-size: 0.9em; /* フォントサイズを少し小さく設定 */
+        }
+           
         body, html {
-            height: 100%;
+            height: 100vh;
             margin: 0;
         }
 
@@ -19,6 +24,7 @@
         }
 
         .like-section {
+        margin-top: 40px;
         display: flex;
         justify-content: flex-end;
         align-items: center;

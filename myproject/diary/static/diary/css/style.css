@@ -1,7 +1,7 @@
 body {
     background-image: url('/static/diary/images/background.jpg');
-    height: 100vh;
-    background-position: center;
+    min-height: 10vh;
+    background-position: top center;
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -14,10 +14,15 @@ body {
     border-radius: 5px; /* 角の丸み */
     font-size: 16px; /* フォントサイズ */
     transition: 0.3s; /* ホバー時の遷移のスムーズさ */
+    height: 40px;
 }
 
 .btn-custom:hover {
     background-color: #a19486; /* ホバー時の背景色を少し暗くする */
+}
+
+.btn-custom-wide {
+    width: 85px; /* 幅を85ピクセルに設定 */
 }
 
 .center-container {
@@ -38,28 +43,41 @@ body {
 }
 
 .form-group label {
-    white-space: nowrap; 
+    display: block; /* ラベルをブロック要素として表示 */
+    margin-bottom: 0.5rem; /* ラベルとフィールドの間に適度なスペースを確保 */
 }
 
-.form-group input, .form-group textarea {
-    width: 100%;
+.form-control {
+    display: block; /* 入力フィールドをブロック要素として表示 */
+    width: 100%; /* コンテナの全幅を使用 */
+    padding: 0.375rem 0.75rem; /* パディングを適宜設定 */
+    font-size: 1rem; /* フォントサイズの指定 */
+    line-height: 1.5; /* 行の高さを設定 */
+    color: #495057; /* 文字色 */
+    background-color: #fff; /* 背景色 */
+    background-clip: padding-box; /* 背景の描画範囲をパディングボックス内に限定 */
+    border: 1px solid #ced4da; /* 境界線のスタイル */
+    border-radius: 0.25rem; /* 角の丸みを設定 */
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; /* 遷移効果 */
+    overflow-wrap: break-word; /* 長い単語も折り返して表示 */
 }
 
-.form-group input {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.form-group .form-check {
+    display: flex; /* チェックボックスとラベルを横に並べる */
+    align-items: center; /* 垂直方向の中心揃え */
 }
 
-.form-group {
-    display: flex;
-    justify-content: space-between; 
-    align-items: center;
-    width: 100%;
+.form-group .form-check-label {
+    margin-left: 0.5rem; /* チェックボックスの右にラベルを表示 */
+}
+
+.form-group .form-check-input {
+    width: auto; /* 入力フィールドの幅を自動に設定 */
 }
 
 .form-group button {
-    margin-left: auto; 
+    margin-top: 1rem; /* ボタンの上部にマージンを設定 */
+    margin-left: auto; /* 右揃えに */
 }
 
 .nav-link {
@@ -92,5 +110,11 @@ nav .navbar-nav button {
     background: none; /* 背景を透明に */
     border: none; /* 境界線を削除 */
     margin-top: 8px !important; /* 上部のマージンを強制適用 */
-    margin-left: 2mm; /* 左のマージンを調整して、位置を右にずらす */
+    margin-left: 4mm; /* 左のマージンを調整して、位置を右にずらす */
 }
+
+.errorlist {
+    color: red; /* エラーメッセージの文字色を赤に設定 */
+    font-size: 0.9em; /* フォントサイズを少し小さく設定 */
+}
+

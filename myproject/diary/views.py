@@ -1,4 +1,5 @@
 from django.urls import reverse_lazy
+from django.shortcuts import render
 from django.views import View, generic
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect
@@ -7,11 +8,13 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LogoutView
 from django.contrib.auth.decorators import login_required
+from django.views.generic import TemplateView
 from .models import Post, Like
 from .forms import PostForm
 from django.db.models import Q 
 
-
+class ChooseAuthView(TemplateView):
+    template_name = 'choose_auth.html'
 
 # ユーザー登録ビュー
 class SignUpView(generic.CreateView):
@@ -61,6 +64,12 @@ class PostCreateView(LoginRequiredMixin, generic.CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user  # 投稿者としてログインユーザーを設定
         return super().form_valid(form)
+    
+    def get_initial(self):
+        # ビューが呼び出された時のフォームの初期値を設定する
+        initial = super().get_initial()
+        initial['is_public'] = True  # デフォルトで「公開する」をチェック
+        return initial
 
 # 投稿更新ビュー
 class PostUpdateView(LoginRequiredMixin, generic.UpdateView):
